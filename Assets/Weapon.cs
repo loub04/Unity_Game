@@ -1,7 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
+    [SerializeField]
+    private int rotationSpeed = 200;
+    [SerializeField]
+    private Vector3 rotationPoint = Vector3.zero;
+
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -11,6 +19,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(Vector3.zero, Vector3.forward, 200*Time.deltaTime);
+        float rotationAmount = rotationSpeed * Time.deltaTime;
+        transform.RotateAround(rotationPoint, Vector3.forward, rotationAmount);
     }
 }
