@@ -8657,6 +8657,7 @@ GameObject:
   m_Component:
   - component: {fileID: 294906822}
   - component: {fileID: 294906823}
+  - component: {fileID: 294906824}
   m_Layer: 0
   m_Name: EnemyController
   m_TagString: Untagged
@@ -8780,6 +8781,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &294906824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294906820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826c5bb1fa6949d43b31e70c84509b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+  enemyPrefab: {fileID: 8340407583587384781, guid: acf5b478cfb7a8e4183b670868c585a0, type: 3}
+  enemyCount: 5
+  spawnTopLeft: {fileID: 204946371}
+  spawnTopRight: {fileID: 1920170174}
+  spawnBottomLeft: {fileID: 1929673986}
+  spawnBottomRight: {fileID: 1260062938}
 --- !u!1 &416778470
 GameObject:
   m_ObjectHideFlags: 0
