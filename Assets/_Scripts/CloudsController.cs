@@ -8,6 +8,10 @@ public class CloudsController : MonoBehaviour
     [SerializeField]
     private float speed = 1.0f;
 
+    [SerializeField]
+    private float xLimit = 12.5f;
+    
+
     // Start is 
     // called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +26,11 @@ public class CloudsController : MonoBehaviour
         {
             clouds[i].position =
                 clouds[i].position + Vector3.right * Time.deltaTime * speed;
+            
+            if(clouds[i].position.x > xLimit)
+            {
+                clouds[i].position -= new Vector3(xLimit * 2, 0, 0);
+            }
         }
     }
 }
