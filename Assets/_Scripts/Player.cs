@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Player : MonoBehaviour
 { 
@@ -9,6 +10,8 @@ public class Player : MonoBehaviour
     private float speed = 3f;
 
     private Vector2 input;
+
+    public UnityEvent OnPlayerDie; 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,5 +31,14 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         rb2D.linearVelocity = input * speed;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(OnPlayerDie != null)
+        {
+            OnPlayerDie.Invoke();
+        }
+        Destroy(gameObject);
     }
 }

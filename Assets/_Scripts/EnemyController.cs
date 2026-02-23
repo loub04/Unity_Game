@@ -24,6 +24,11 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 spawnPosition = SelectRandomPosition();
         GameObject enemyObject = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        Enemy enemy = enemyObject.GetComponent<Enemy>();
+        if(enemy != null)
+        {
+            enemy.OnDie += SpawnEnemy;
+        }
     }
 
     private Vector3 SelectRandomPosition()

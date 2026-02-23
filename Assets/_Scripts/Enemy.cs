@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 public class Enemy : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     private GameObject deadCrab;
+
+    public event Action OnDie = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -48,6 +51,10 @@ public class Enemy : MonoBehaviour
         {
             Instantiate(deadCrab, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            if(OnDie != null)
+            {
+                OnDie();
+            }
         }
     }
 }
