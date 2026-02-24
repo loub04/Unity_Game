@@ -9,6 +9,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private int enemyCount = 5;
     [SerializeField]
+    private float multiplier = 1.0f;
+    [SerializeField]
+    private float increaseMultiplier = 0.01f;
+    [SerializeField]
     private Transform spawnTopLeft, spawnTopRight, spawnBottomLeft, spawnBottomRight;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,6 +32,8 @@ public class EnemyController : MonoBehaviour
         if(enemy != null)
         {
             enemy.OnDie += SpawnEnemy;
+            enemy.IncreaseSpeed(multiplier);
+            multiplier += increaseMultiplier;
         }
     }
 

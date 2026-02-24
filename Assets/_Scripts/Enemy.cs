@@ -3,7 +3,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 1;
+    private float basespeed = 1;
+    private float speed;
     private Rigidbody2D rb2D;
     private Transform playerTransform;
     public bool stopped = false;
@@ -51,10 +52,15 @@ public class Enemy : MonoBehaviour
         {
             Instantiate(deadCrab, transform.position, Quaternion.identity);
             Destroy(gameObject);
+            Debug.Log(speed);
             if(OnDie != null)
             {
                 OnDie();
             }
         }
+    }
+    public void IncreaseSpeed(float multiplier)
+    {
+        speed = basespeed * multiplier;
     }
 }
