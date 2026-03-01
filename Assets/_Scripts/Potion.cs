@@ -2,11 +2,6 @@ using UnityEngine;
 
 public class Potion : MonoBehaviour
 {
-
-    [SerializeField]
-    private GameObject PotionPrefab;
-
-    private Enemy enemy;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,8 +14,12 @@ public class Potion : MonoBehaviour
         
     }
 
-    private void spawnPotion()
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if(collision.transform.root.CompareTag("Player"))
+        {
+            Debug.Log("potion used");
+            Destroy(gameObject);
+        }
     }
 }

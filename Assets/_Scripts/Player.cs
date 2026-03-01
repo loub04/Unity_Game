@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -43,9 +42,11 @@ public class Player : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        // else if(collision.CompareTag("Potion"))
-        // {
-            
-        // }
+        else if(collision.transform.root.CompareTag("Potion"))
+        {
+            Debug.Log("Kollision detected");
+            Destroy(collision.transform.root.gameObject);
+            Debug.Log("Deleted");
+        }
     }
 }

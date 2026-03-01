@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     private GameObject deadCrab;
 
     public event Action OnDie = null;
+    public static event Action OnAnyDie;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,10 +52,12 @@ public class Enemy : MonoBehaviour
         if(collision.CompareTag("Weapon"))
         {
             Instantiate(deadCrab, transform.position, Quaternion.identity);
+            GameManager.Instance.increaseKilled();
             Destroy(gameObject);
             Debug.Log(speed);
             if(OnDie != null)
             {
+                OnAnyDie();
                 OnDie();
             }
         }

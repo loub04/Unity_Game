@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -16,8 +17,23 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public int getEnemyCount()
+    public int GetEnemyCount()
     {
         return enemyCount;
+    }
+
+    public int GetEnemyKilled()
+    {
+        return enemyKilled;
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
+    internal void increaseKilled()
+    {
+        enemyKilled++;
     }
 }
