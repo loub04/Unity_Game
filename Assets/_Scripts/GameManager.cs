@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int score = 0;
     [SerializeField]
+    private int level = 1;
+    [SerializeField]
     private int enemyKilled = 0;
     [SerializeField]
     private int enemyCount = 5;
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public int GetScore()
     {
+        score = enemyKilled * level;
         return score;
     }
 
