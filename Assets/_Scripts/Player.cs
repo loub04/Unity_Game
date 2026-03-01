@@ -35,10 +35,17 @@ public class Player : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(OnPlayerDie != null)
+        if(collision.transform.root.CompareTag("Enemy"))
         {
-            OnPlayerDie.Invoke();
+            if(OnPlayerDie != null)
+            {
+                OnPlayerDie.Invoke();
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        // else if(collision.CompareTag("Potion"))
+        // {
+            
+        // }
     }
 }
