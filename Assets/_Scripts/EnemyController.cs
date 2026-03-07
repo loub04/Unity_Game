@@ -1,13 +1,20 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject enemyPrefab;
+    private GameObject crabEnemyPrefab;
+    [SerializeField]
+    private GameObject shroomEnemyPrefab;
     [SerializeField]
     private int enemyCount;
+    [SerializeField]
+    private int nextEnemySpawn;
+    [SerializeField]
+    private float shroomSpawnChance = 0.05f;
     [SerializeField]
     private float multiplier = 1.0f;
     [SerializeField]
@@ -27,8 +34,9 @@ public class EnemyController : MonoBehaviour
 
     private void SpawnEnemy()
     {
+    
         Vector3 spawnPosition = SelectRandomPosition();
-        GameObject enemyObject = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        GameObject enemyObject = Instantiate(crabEnemyPrefab, spawnPosition, Quaternion.identity);
         Enemy enemy = enemyObject.GetComponent<Enemy>();
         if(enemy != null)
         {
@@ -36,7 +44,20 @@ public class EnemyController : MonoBehaviour
             enemy.IncreaseSpeed(multiplier);
             multiplier += increaseMultiplier;
         }
+            
+        if(GameManager.Instance.GetEnemyKilled() >= nextEnemySpawn && Random.value < shroomSpawnChance)
+        {
+            Vector3 shroomPosition = SelectRandomPosition();
+            GameObject shroomObject = Instantiate(shroomEnemyPrefab, shroomPosition, Quaternion.identity);
+            Enemy shroom = shroomObject.GetComponent<Enemy>();
+            if(shroom != null)
+            {
+                shroom.OnDie += SpawnEnemy;
+                shroom.DecreaseSpeed(0.8f);
+            }
+        }
     }
+
 
     private Vector3 SelectRandomPosition()
     {

@@ -66,4 +66,8 @@ public class Enemy : MonoBehaviour
     {
         speed = basespeed * multiplier;
     }
+    public void DecreaseSpeed(float multiplier)
+    {
+        speed = basespeed * multiplier;
+    }
 }

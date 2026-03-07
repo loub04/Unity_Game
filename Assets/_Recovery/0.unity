@@ -8930,10 +8930,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 826c5bb1fa6949d43b31e70c84509b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  crabEnemyPrefab: {fileID: 8340407583587384781, guid: acf5b478cfb7a8e4183b670868c585a0, type: 3}
-  shroomEnemyPrefab: {fileID: 7513245911191545979, guid: ee78e0a6a9f34a34ebb420ee8da7aabf, type: 3}
+  enemyPrefab: {fileID: 8340407583587384781, guid: acf5b478cfb7a8e4183b670868c585a0, type: 3}
   enemyCount: 5
-  nextEnemySpawn: 5
   multiplier: 1
   increaseMultiplier: 0.01
   spawnTopLeft: {fileID: 204946371}
