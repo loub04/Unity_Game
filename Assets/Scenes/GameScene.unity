@@ -8934,6 +8934,7 @@ MonoBehaviour:
   shroomEnemyPrefab: {fileID: 7513245911191545979, guid: ee78e0a6a9f34a34ebb420ee8da7aabf, type: 3}
   enemyCount: 5
   nextEnemySpawn: 5
+  shroomSpawnChance: 0.3
   multiplier: 1
   increaseMultiplier: 0.01
   spawnTopLeft: {fileID: 204946371}

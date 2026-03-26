@@ -47,12 +47,14 @@ public class Enemy : MonoBehaviour
         rb2D.linearVelocity = directionToPlayer.normalized * speed;
     }
 
+    [Obsolete]
     void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Weapon"))
         {
             Instantiate(deadCrab, transform.position, Quaternion.identity);
             GameManager.Instance.increaseKilled();
+            FindObjectOfType<EnemyController>().DeregisterEnemy(gameObject);
             Destroy(gameObject);
             Debug.Log(speed);
             if(OnDie != null)

@@ -8,14 +8,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float speed = 3f;
 
+    private EnemyController enemyController;
     private Vector2 input;
 
-    public UnityEvent OnPlayerDie; 
+    public UnityEvent OnPlayerDie;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    [System.Obsolete]
     void Start()
     {
-        
+        enemyController = FindObjectOfType<EnemyController>();
     }
 
     // Update is called once per frame
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Kollision detected");
             Destroy(collision.transform.root.gameObject);
+            enemyController.StartCoroutine(enemyController.ClearAllEnemy());
             Debug.Log("Deleted");
         }
     }

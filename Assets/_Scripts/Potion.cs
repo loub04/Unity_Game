@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Potion : MonoBehaviour
@@ -16,10 +17,11 @@ public class Potion : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.transform.root.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
             Debug.Log("potion used");
             Destroy(gameObject);
         }
     }
+
 }

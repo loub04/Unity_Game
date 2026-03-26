@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Xml.Serialization;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
@@ -22,6 +24,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private Transform spawnTopLeft, spawnTopRight, spawnBottomLeft, spawnBottomRight;
 
+
+    public List<GameObject> activeEnemies = new List<GameObject>();
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,6 +43,7 @@ public class EnemyController : MonoBehaviour
     
         Vector3 spawnPosition = SelectRandomPosition();
         GameObject enemyObject = Instantiate(crabEnemyPrefab, spawnPosition, Quaternion.identity);
+        RegisterEnemy(enemyObject);
         Enemy enemy = enemyObject.GetComponent<Enemy>();
         if(enemy != null)
         {
@@ -49,10 +56,10 @@ public class EnemyController : MonoBehaviour
         {
             Vector3 shroomPosition = SelectRandomPosition();
             GameObject shroomObject = Instantiate(shroomEnemyPrefab, shroomPosition, Quaternion.identity);
+            RegisterEnemy(shroomObject);
             Enemy shroom = shroomObject.GetComponent<Enemy>();
             if(shroom != null)
             {
-                shroom.OnDie += SpawnEnemy;
                 shroom.DecreaseSpeed(0.8f);
             }
         }
@@ -84,9 +91,40 @@ public class EnemyController : MonoBehaviour
         return selectedTransform.position + (Vector3)Random.insideUnitCircle;
     }
 
+    public void RegisterEnemy(GameObject enemy)
+    {
+        activeEnemies.Add(enemy);
+    }
+
+    public void DeregisterEnemy(GameObject enemy)
+    {
+        activeEnemies.Remove(enemy);
+    }
+
+    public IEnumerator ClearAllEnemy()
+    {
+        foreach(var enemy in activeEnemies)
+        {
+            Destroy(enemy);
+        }
+        
+        activeEnemies.Clear();
+
+        for(int i = 0; i < enemyCount; i++)
+        {
+            SpawnEnemy();
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         
     }
 }
+
+
+
+
+
