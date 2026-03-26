@@ -45,7 +45,7 @@ public class PotionSpawner : MonoBehaviour
     private void HandleEnemyKilled()
     {
         enemyKilled = GameManager.Instance.GetEnemyKilled();
-        if(enemyKilled > 0 && enemyKilled % 5 == 0 && enemyKilled != lastSpawnedAt)
+        if(enemyKilled > 0 && enemyKilled % 10 == 0 && enemyKilled != lastSpawnedAt)
         {
             lastSpawnedAt = enemyKilled;
             SpawnPotion();
